@@ -1,6 +1,8 @@
 package main
 
 import (
+	"flag"
+	"fmt"
 	"log"
 	"os"
 )
@@ -11,6 +13,17 @@ var handlers = map[string]commandHandler{}
 
 func main() {
 	args := os.Args
+
+	if args[1] == "--help" {
+		flag.Usage = func() {
+			// set your usage
+			fmt.Println(`
+				this is usage
+			`)
+		}
+		flag.Parse()
+		return
+	}
 
 	if len(args) < 2 {
 		log.Fatal("must with command")
