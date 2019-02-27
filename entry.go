@@ -37,6 +37,7 @@ func main() {
 	}
 
 	if _, ok := handlers[command]; ok {
+		defer helloAndBye(command)()
 		handlers[command](command, params)
 	} else {
 		log.Fatal("cmd " + command + " does't exsit")
